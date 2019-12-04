@@ -27,6 +27,12 @@ func (s *ClockSuite) TestFrozenClock() {
 	s.NotEmpty(clock.Now())
 }
 
+func (s *ClockSuite) TestFrozenClockCustomTime() {
+	clock := &clk.FrozenClock{ClockTime: time.Date(2015, 10, 21, 21, 00, 0, 0, time.UTC)}
+	s.Equal(time.Date(2015, 10, 21, 21, 00, 0, 0, time.UTC), clock.Now())
+	s.NotEmpty(clock.Now())
+}
+
 func (s *ClockSuite) TestDaysSince() {
 	oneWeekAgo := time.Now().Add(time.Hour * 24 * -7)
 	s.Equal(int64(7), clk.DaysSince(oneWeekAgo))

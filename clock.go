@@ -19,7 +19,10 @@ type Clock interface {
 type SystemClock struct{}
 
 // FrozenClock implementation
-type FrozenClock struct{}
+type FrozenClock struct {
+	ClockTime time.Time
+}
+
 
 // Now returns system time
 func (c *SystemClock) Now() time.Time {
@@ -28,7 +31,11 @@ func (c *SystemClock) Now() time.Time {
 
 // Now returns frozen time
 func (c *FrozenClock) Now() time.Time {
-	return FrozenTime
+	if c.ClockTime.IsZero() {
+		return FrozenTime
+	}
+
+	return c.ClockTime
 }
 
 // DaysSince returns number of days since given time
