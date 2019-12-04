@@ -23,7 +23,6 @@ type FrozenClock struct {
 	ClockTime time.Time
 }
 
-
 // Now returns system time
 func (c *SystemClock) Now() time.Time {
 	return time.Now()
