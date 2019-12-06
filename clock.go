@@ -25,7 +25,7 @@ type FrozenClock struct {
 
 // Now returns system time
 func (c *SystemClock) Now() time.Time {
-	return time.Now()
+	return time.Now().Truncate(time.Millisecond).UTC()
 }
 
 // Now returns frozen time
