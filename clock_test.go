@@ -73,3 +73,16 @@ func (s *ClockSuite) TestUnix() {
 	name, _ := t.Zone()
 	s.Equal("UTC", name)
 }
+
+func (s *ClockSuite) TestDate() {
+	t := clk.Date(2019, time.February, 25, 10, 32, 40)
+	s.Equal(2019, t.Year())
+	s.Equal(time.February, t.Month())
+	s.Equal(25, t.Day())
+	s.Equal(10, t.Hour())
+	s.Equal(32, t.Minute())
+	s.Equal(40, t.Second())
+	s.Equal(0, t.Nanosecond())
+	name, _ := t.Zone()
+	s.Equal("UTC", name)
+}
