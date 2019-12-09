@@ -21,6 +21,19 @@ func (s *ClockSuite) TestSystemClock() {
 	s.NotEmpty(clock.Now())
 }
 
+func (s *ClockSuite) TestSystemClockIsInUTC() {
+	clock := &clk.SystemClock{}
+	now := clock.Now()
+	name, _ := now.Zone()
+	s.Equal("UTC", name)
+}
+
+func (s *ClockSuite) TestSystemClockIsInTruncatedAtMilliseconds() {
+	clock := &clk.SystemClock{}
+	now := clock.Now()
+	s.Equal(int64(0), now.UnixNano()%100000)
+}
+
 func (s *ClockSuite) TestFrozenClock() {
 	clock := &clk.FrozenClock{}
 	s.Equal(clk.FrozenTime, clock.Now())
