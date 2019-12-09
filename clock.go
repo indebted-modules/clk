@@ -52,3 +52,8 @@ func ParseDate(s string) (time.Time, error) {
 func Unix(seconds int64) time.Time {
 	return time.Unix(seconds, 0).UTC()
 }
+
+// Date returns the Time corresponding to yyyy-mm-dd hh:mm:ss in the UTC timezone.
+func Date(year int, month time.Month, day, hour, min, sec int) time.Time {
+	return time.Date(year, month, day, hour, min, sec, 0, time.UTC)
+}
