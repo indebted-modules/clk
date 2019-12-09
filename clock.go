@@ -47,3 +47,8 @@ func DaysSince(t time.Time) int64 {
 func ParseDate(s string) (time.Time, error) {
 	return time.Parse(dateFormat, s)
 }
+
+// Unix returns the Time in UTC corresponding to the given Unix time
+func Unix(seconds int64) time.Time {
+	return time.Unix(seconds, 0).UTC()
+}
