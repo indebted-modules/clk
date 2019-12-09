@@ -54,3 +54,9 @@ func (s *ClockSuite) TestParseDateInvalidFormat() {
 	s.Zero(t)
 	s.Error(err)
 }
+
+func (s *ClockSuite) TestUnix() {
+	t := clk.Unix(1575876119)
+	name, _ := t.Zone()
+	s.Equal("UTC", name)
+}
